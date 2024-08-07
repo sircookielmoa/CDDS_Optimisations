@@ -49,7 +49,7 @@ int main(int argc, char* argv[])
     for (int i = 0; i < CRITTER_COUNT; i++)
     {
         // create a random direction vector for the velocity
-        Vector2 velocity = { -100+(rand()%200), -100+(rand()%200) };
+        Vector2 velocity = { -100.0f + (rand() % 200), -100.0f + (rand() % 200) };
         // normalize and scale by a random speed
         velocity = Vector2Scale(Vector2Normalize(velocity), MAX_VELOCITY);
 
