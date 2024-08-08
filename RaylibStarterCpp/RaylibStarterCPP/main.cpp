@@ -29,8 +29,8 @@ int main(int argc, char* argv[])
 {
     // Initialization
     //--------------------------------------------------------------------------------------
-    int screenWidth = 800;
-    int screenHeight = 450;
+    int screenWidth = 800;//800;
+    int screenHeight = 450;//450;
 
     InitWindow(screenWidth, screenHeight, "raylib [core] example - basic window");
 
@@ -43,8 +43,8 @@ int main(int argc, char* argv[])
     Critter critters[1000]; 
 
     // create some critters
-    const int CRITTER_COUNT = 50;
-    const int MAX_VELOCITY = 80;
+    const int CRITTER_COUNT = 50;//50;
+    const int MAX_VELOCITY = 80;//80;
 
     for (int i = 0; i < CRITTER_COUNT; i++)
     {
@@ -62,7 +62,7 @@ int main(int argc, char* argv[])
 
 
     Critter destroyer;
-    Vector2 velocity = { -100 + (rand() % 200), -100 + (rand() % 200) };
+    Vector2 velocity = { -100.0f + (rand() % 200), -100.0f + (rand() % 200) };
     velocity = Vector2Scale(Vector2Normalize(velocity), MAX_VELOCITY);
     destroyer.Init(Vector2{ (float)(screenWidth >> 1), (float)(screenHeight >> 1) }, velocity, 20, "res/9.png");
 
