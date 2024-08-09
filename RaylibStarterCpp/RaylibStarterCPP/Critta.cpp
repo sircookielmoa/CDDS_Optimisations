@@ -1,7 +1,7 @@
-#include "Critter.h"
+#include "Critta.h"
 
 
-Critter::Critter()
+Critta::Critta()
 {
 	m_position = Vector2{ 0, 0 };
 	m_velocity = Vector2{ 0, 0 };
@@ -9,13 +9,13 @@ Critter::Critter()
 	m_isLoaded = false;
 }
 
-Critter::~Critter()
+Critta::~Critta()
 {
 	UnloadTexture(m_texture);
 	m_isLoaded = false;
 }
 
-void Critter::Init(Vector2 position, Vector2 velocity, float radius, const char* texture)
+void Critta::Init(Vector2 position, Vector2 velocity, float radius, const char* texture)
 {
 	m_position = position;
 	m_velocity = velocity;
@@ -26,13 +26,13 @@ void Critter::Init(Vector2 position, Vector2 velocity, float radius, const char*
 	m_isLoaded = true;
 }
 
-void Critter::Destroy()
+void Critta::Destroy()
 {
 	UnloadTexture(m_texture);
 	m_isLoaded = false;
 }
 
-void Critter::Update(float dt)
+void Critta::Update(float dt)
 {
 	if (m_isLoaded == false)
 		return;
@@ -44,7 +44,7 @@ void Critter::Update(float dt)
 }
 
 
-void Critter::Draw()
+void Critta::Draw()
 {
 	if (m_isLoaded == false)
 		return;

@@ -15,15 +15,21 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Critter.cpp">
+    <ClCompile Include="Critta.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="CrittaPool.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Critter.h">
+    <ClInclude Include="Critta.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CrittaPool.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

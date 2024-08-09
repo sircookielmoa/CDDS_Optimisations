@@ -23,16 +23,16 @@
 #include "raymath.h"
 #include <random>
 #include <time.h>
-#include "Critter.h"
+#include "Critta.h"
 
 int main(int argc, char* argv[])
 {
     // Initialization
     //--------------------------------------------------------------------------------------
-    int screenWidth = 800;//800;
-    int screenHeight = 450;//450;
+    int screenWidth = 414;//800;
+    int screenHeight = 736;//450;
 
-    InitWindow(screenWidth, screenHeight, "raylib [core] example - basic window");
+    InitWindow(screenWidth, screenHeight, "AMOGUS");
 
     //SetTargetFPS(60);
     //--------------------------------------------------------------------------------------
@@ -40,7 +40,7 @@ int main(int argc, char* argv[])
     srand(time(NULL));
 
 
-    Critter critters[1000]; 
+    Critta critters[1000]; 
 
     // create some critters
     const int CRITTER_COUNT = 50;//50;
@@ -53,18 +53,18 @@ int main(int argc, char* argv[])
         // normalize and scale by a random speed
         velocity = Vector2Scale(Vector2Normalize(velocity), MAX_VELOCITY);
 
-        // create a critter in a random location
+        // create a amogoo in a random location
         critters[i].Init(
             { (float)(5+rand() % (screenWidth-10)), (float)(5+(rand() % screenHeight-10)) },
             velocity,
-            12, "res/10.png");
+            12, "res/amogus.png");//the poor ssussies that shall be devoured by homie the foul
     }
 
-
-    Critter destroyer;
+    //homa simpon
+    Critta destroyer;
     Vector2 velocity = { -100.0f + (rand() % 200), -100.0f + (rand() % 200) };
     velocity = Vector2Scale(Vector2Normalize(velocity), MAX_VELOCITY);
-    destroyer.Init(Vector2{ (float)(screenWidth >> 1), (float)(screenHeight >> 1) }, velocity, 20, "res/9.png");
+    destroyer.Init(Vector2{ (float)(screenWidth >> 1), (float)(screenHeight >> 1) }, velocity, 20, "res/hoomer.png");//this is homer the destroyer
 
     float timer = 1;
     Vector2 nextSpawnPos = destroyer.GetPosition();
@@ -179,7 +179,8 @@ int main(int argc, char* argv[])
                     Vector2 pos = destroyer.GetPosition();
                     pos = Vector2Add(pos, Vector2Scale(normal, -50));
                     // its pretty ineficient to keep reloading textures. ...if only there was something else we could do
-                    critters[i].Init(pos, Vector2Scale(normal, -MAX_VELOCITY), 12, "res/10.png");
+                    //respawn amogoo
+                    critters[i].Init(pos, Vector2Scale(normal, -MAX_VELOCITY), 12, "res/amogus.png");
                     break;
                 }
             }
@@ -190,7 +191,7 @@ int main(int argc, char* argv[])
         //----------------------------------------------------------------------------------
         BeginDrawing();
 
-        ClearBackground(RAYWHITE);
+        ClearBackground(WHITE);
 
         // draw the critters
         for (int i = 0; i < CRITTER_COUNT; i++)
@@ -203,7 +204,7 @@ int main(int argc, char* argv[])
         destroyer.Draw();
 
         DrawFPS(10, 10);
-        //DrawText("Congrats! You created your first window!", 190, 200, 20, LIGHTGRAY);
+        DrawText("Congrats! You created your first window!", 190, 200, 20, GREEN);
 
         EndDrawing();
         //----------------------------------------------------------------------------------
