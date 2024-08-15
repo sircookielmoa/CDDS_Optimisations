@@ -43,8 +43,8 @@ int main(int argc, char* argv[])
     Critta critters[1000]; 
 
     // create some critters
-    const int CRITTER_COUNT = 50;//50;
-    const int MAX_VELOCITY = 80;//80;
+    const int CRITTER_COUNT = 80;//50;
+    const int MAX_VELOCITY = 100;//80;
 
     for (int i = 0; i < CRITTER_COUNT; i++)
     {

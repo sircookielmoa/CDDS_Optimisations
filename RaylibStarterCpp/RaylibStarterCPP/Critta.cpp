@@ -28,7 +28,7 @@ void Critta::Init(Vector2 position, Vector2 velocity, float radius, const char* 
 
 void Critta::Destroy()
 {
-	UnloadTexture(m_texture);
+	//UnloadTexture(m_texture);
 	m_isLoaded = false;
 }
 

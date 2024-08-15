@@ -1,14 +1,35 @@
 #pragma once
+#include "Critta.h"
+#include "vector"
 class CrittaPool
 {
 public:
-	void init(double x, double y, double xVel, double yVel, int lifetime);
-	void animate();
-	bool isAlive() const;
+	
+	CrittaPool();
+	CrittaPool(std::vector<Critta*> _objects);
+
+	void Allocate();
+	void Deallocate();
+	//critter[1].isDead
+	void IsActive(bool _isDead);
+	//{
+	//	if(_isDead == true)
+	//	{
+	//		//do stuff
+	//	}
+	//	else
+	//	{
+	//		//
+	//	}
+	//}
+
+	std::vector<Critta*> ActiveCrittas();
 
 private:
-	int framesleft_;
-	double x_, y_;
-	double xVel_, yVel_;
+
+	std::vector<Critta*> crittaPoolList;
+	int activeCount;
+	int poolSize;
+
 };
 
