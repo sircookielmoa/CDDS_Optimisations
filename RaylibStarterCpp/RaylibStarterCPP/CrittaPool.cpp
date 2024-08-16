@@ -1,42 +1,33 @@
 #include "CrittaPool.h"
 
-CrittaPool::CrittaPool()
-{
-	
-}
+#include <utils.h>
 
-CrittaPool::CrittaPool(std::vector<Critta*> _objects)
-{
-	
-}
-
-void CrittaPool::Allocate()
-{
-	
-}
-
-void CrittaPool::Deallocate()
-{
-	
-}
-
-void CrittaPool::IsActive(bool _isDead)
-{
-	if(_isDead == true)
-	{
-		//blah blah blah
-		//deallocate(?) so that critta stays dead
-		//that typa thing
-	}
-	else
-	{
-		//maybe allocate(?) reallocate(?)
-		//just leave it ig. i mean its already alive
-		//type stuff
-	}
-}
-
-//std::vector<Critta*> CrittaPool::ActiveCrittas()
-//{
+//CrittaPool::CrittaPool()
 //
-//}
+//	std::vector<Critta*> c;
+//	crittasInPool = c;
+//	inactiveIndex = 0;
+//
+
+CrittaPool::CrittaPool(const std::vector<Critta*>& _objects)
+{
+	crittasInPool = _objects;
+	//poolSize = crittasInPool.size();
+	inactiveIndex = crittasInPool.size();
+}
+
+Critta* CrittaPool::Activate()
+{
+	//check for inactive crittas
+	if(inactiveIndex == crittasInPool.size())
+	{
+		return nullptr;
+	}
+	inactiveIndex++;
+	return crittasInPool[inactiveIndex - 1];
+}
+
+void CrittaPool::Deactivate(Critta* c)
+{
+	
+}
