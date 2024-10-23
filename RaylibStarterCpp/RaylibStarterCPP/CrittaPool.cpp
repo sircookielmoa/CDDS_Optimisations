@@ -1,7 +1,7 @@
 #include "CrittaPool.h"
 
 #include <utils.h>
-
+#include <iostream>
 //CrittaPool::CrittaPool()
 //
 //	std::vector<Critta*> c;
@@ -9,11 +9,10 @@
 //	inactiveIndex = 0;
 //
 
-CrittaPool::CrittaPool(const std::vector<Critta*>& _objects)
+CrittaPool::CrittaPool(const std::vector<Critta*> _objects)
 {
 	crittasInPool = _objects;
-	//poolSize = crittasInPool.size();
-	inactiveIndex = crittasInPool.size();
+	inactiveIndex = crittasInPool.size() - 1;
 }
 
 Critta* CrittaPool::Activate()
@@ -29,5 +28,7 @@ Critta* CrittaPool::Activate()
 
 void CrittaPool::Deactivate(Critta* c)
 {
-	
+	c->Destroy();
+	inactiveIndex--;
+	std::swap(c, crittasInPool[inactiveIndex]);
 }

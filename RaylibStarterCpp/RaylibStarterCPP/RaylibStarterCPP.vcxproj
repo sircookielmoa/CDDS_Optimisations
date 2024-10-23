@@ -178,6 +178,7 @@
     <ClCompile Include="CrittaPool.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AssetManager.h" />
     <ClInclude Include="Critta.h" />
     <ClInclude Include="CrittaPool.h" />
   </ItemGroup>

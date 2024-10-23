@@ -1,7 +1,8 @@
 #pragma once
-
+#include "AssetManager.h"
 
 #include "raylib.h"
+
 
 class Critta
 {

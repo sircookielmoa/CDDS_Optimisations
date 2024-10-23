@@ -1,5 +1,6 @@
 #include "Critta.h"
 
+UnorderedMap<std::string, Texture2D*> AssMan::loadedTextures;
 
 Critta::Critta()
 {
@@ -11,7 +12,7 @@ Critta::Critta()
 
 Critta::~Critta()
 {
-	UnloadTexture(m_texture);
+	//UnloadTexture(m_texture);
 	m_isLoaded = false;
 }
 
@@ -21,7 +22,7 @@ void Critta::Init(Vector2 position, Vector2 velocity, float radius, const char* 
 	m_velocity = velocity;
 	m_radius = radius;
 	
-	m_texture = LoadTexture(texture);	
+	m_texture = *AssMan::loadTexture(texture);
 
 	m_isLoaded = true;
 }
