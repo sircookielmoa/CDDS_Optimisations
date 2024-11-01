@@ -396,3 +396,6 @@ FodyWeavers.xsd
 
 # JetBrains Rider
 *.sln.iml
+
+!RaylibStarterCpp/RaylibStarterCpp/dep/Raylib/**
+RaylibStarterCpp/delete_me/**
