@@ -1,8 +1,8 @@
-#include "Critta.h"
+#include "Critter.h"
 
-UnorderedMap<std::string, Texture2D*> AssMan::loadedTextures;
+UnorderedMap<std::string, Texture2D*> AssetManager::loadedTextures;
 
-Critta::Critta()
+Critter::Critter()
 {
 	m_position = Vector2{ 0, 0 };
 	m_velocity = Vector2{ 0, 0 };
@@ -10,30 +10,30 @@ Critta::Critta()
 	m_isLoaded = false;
 }
 
-Critta::~Critta()
+Critter::~Critter()
 {
 	//UnloadTexture(m_texture);
 	m_isLoaded = false;
 }
 
-void Critta::Init(Vector2 position, Vector2 velocity, float radius, const char* texture)
+void Critter::Init(Vector2 position, Vector2 velocity, float radius, const char* texture)
 {
 	m_position = position;
 	m_velocity = velocity;
 	m_radius = radius;
 	
-	m_texture = *AssMan::loadTexture(texture);
+	m_texture = *AssetManager::loadTexture(texture);
 
 	m_isLoaded = true;
 }
 
-void Critta::Destroy()
+void Critter::Destroy()
 {
 	//UnloadTexture(m_texture);
 	m_isLoaded = false;
 }
 
-void Critta::Update(float dt)
+void Critter::Update(float dt)
 {
 	if (m_isLoaded == false)
 		return;
@@ -45,7 +45,7 @@ void Critta::Update(float dt)
 }
 
 
-void Critta::Draw()
+void Critter::Draw()
 {
 	if (m_isLoaded == false)
 		return;

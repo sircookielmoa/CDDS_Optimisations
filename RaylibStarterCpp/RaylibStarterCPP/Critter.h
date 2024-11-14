@@ -4,7 +4,7 @@
 #include "raylib.h"
 
 
-class Critta
+class Critter
 {
 protected:	
 	Vector2 m_position;
@@ -17,8 +17,8 @@ protected:
 	bool m_isDirty;		// indicates if we've already processed a collision response for this critter
 	
 public:
-	Critta();
-	~Critta();
+	Critter();
+	~Critter();
 
 	void Init(Vector2 position, Vector2 velocity, float radius, const char* texture);
 	void Destroy();

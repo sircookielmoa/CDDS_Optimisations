@@ -173,14 +173,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Critta.cpp" />
+    <ClCompile Include="Critter.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="CrittaPool.cpp" />
+    <ClCompile Include="CritterPool.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AssetManager.h" />
-    <ClInclude Include="Critta.h" />
-    <ClInclude Include="CrittaPool.h" />
+    <ClInclude Include="Critter.h" />
+    <ClInclude Include="CritterPool.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

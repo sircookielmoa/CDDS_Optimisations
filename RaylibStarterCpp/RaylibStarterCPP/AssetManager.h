@@ -2,7 +2,7 @@
 #include <string>
 
 #include "raylib.h"
-#include "Critta.h"
+#include "Critter.h"
 
 
 
@@ -102,7 +102,7 @@ public:
 //if it does, use the already loaded texture
 
 //input a key k, and it will grab value v
-class AssMan
+class AssetManager
 {
 
 public:
@@ -118,6 +118,7 @@ static UnorderedMap<std::string, Texture2D*> loadedTextures;
 		loadedTextures[path] = texture;
 		return texture;
 
+		delete texture;
 	};
 
 	

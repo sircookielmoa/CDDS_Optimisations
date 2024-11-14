@@ -23,8 +23,8 @@
 #include "raymath.h"
 #include <random>
 #include <time.h>
-#include "Critta.h"
-#include "CrittaPool.h"
+#include "Critter.h"
+#include "CritterPool.h"
 
 int main(int argc, char* argv[])
 {
@@ -41,7 +41,7 @@ int main(int argc, char* argv[])
     srand(time(NULL));
 
 
-	std::vector<Critta*> critters;
+	std::vector<Critter*> critters;
     
     // create some critters
     const int CRITTER_COUNT = 80;//50;
@@ -50,26 +50,25 @@ int main(int argc, char* argv[])
 
     for (int i = 0; i < CRITTER_COUNT; i++)
     {
-        critters.push_back(new Critta);
+        critters.push_back(new Critter);
         // create a random direction vector for the velocity
         Vector2 velocity = { -100.0f + (rand() % 200), -100.0f + (rand() % 200) };
         // normalize and scale by a random speed
         velocity = Vector2Scale(Vector2Normalize(velocity), MAX_VELOCITY);
 
-        // create a amogoo in a random location
+        // create a critter in a random location
         critters[i]->Init(
             { (float)(5+rand() % (screenWidth-10)), (float)(5+(rand() % screenHeight-10)) },
             velocity,
-            12, "res/amogus.png");//the poor ssussies that shall be devoured by homie the foul
+            12, "res/10.png");//critters that will be 'hunted' by destroyer
     }
     
 
-    CrittaPool cp2077(critters);
-    //homa simpon
-    Critta destroyer;
+    CritterPool critterPool(critters);
+    Critter destroyer;
     Vector2 velocity = { -100.0f + (rand() % 200), -100.0f + (rand() % 200) };
     velocity = Vector2Scale(Vector2Normalize(velocity), MAX_VELOCITY);
-    destroyer.Init(Vector2{ (float)(screenWidth >> 1), (float)(screenHeight >> 1) }, velocity, 20, "res/hoomer.png");//this is homer the destroyer
+    destroyer.Init(Vector2{ (float)(screenWidth >> 1), (float)(screenHeight >> 1) }, velocity, 20, "res/9.png");//this is the destroyer
 
     float timer = 1;
     Vector2 nextSpawnPos = destroyer.GetPosition();
@@ -135,7 +134,7 @@ int main(int argc, char* argv[])
                 float dist = Vector2Distance(critters[i]->GetPosition(), destroyer.GetPosition());
                 if (dist < critters[i]->GetRadius() + destroyer.GetRadius())
                 {
-                    cp2077.Deactivate(critters[i]);
+                    critterPool.Deactivate(critters[i]);
                     // this would be the perfect time to put the critter into an object pool
                 }
             }
@@ -188,9 +187,9 @@ int main(int argc, char* argv[])
                     // get a position behind the destroyer, and far enough away that the critter won't bump into it again
                     Vector2 pos = destroyer.GetPosition();
                     pos = Vector2Add(pos, Vector2Scale(normal, -50));
-                    // its pretty ineficient to keep reloading textures. ...if only there was something else we could do
-                    //respawn amogoo
-                    cp2077.Activate()->Init(pos, Vector2Scale(normal, -MAX_VELOCITY), 12, "res/amogus.png");
+                    // its pretty inefficient to keep reloading textures. ...if only there was something else we could do
+                    //respawn critter
+                    critterPool.Activate()->Init(pos, Vector2Scale(normal, -MAX_VELOCITY), 12, "res/10.png");
                     break;
                 }
             }
@@ -214,19 +213,20 @@ int main(int argc, char* argv[])
         destroyer.Draw();
 
         DrawFPS(10, 10);
-        DrawText("Congrats! You created your first window!", 190, 200, 20, GREEN);
 
         EndDrawing();
         //----------------------------------------------------------------------------------
     }
 
+    // De-Initialization
+    //--------------------------------------------------------------------------------------   
     for (int i = 0; i < CRITTER_COUNT; i++)
     {
         critters[i]->Destroy();
+        delete critters[i];
     }
+    
 
-    // De-Initialization
-    //--------------------------------------------------------------------------------------   
     CloseWindow();        // Close window and OpenGL context
     //--------------------------------------------------------------------------------------
 
