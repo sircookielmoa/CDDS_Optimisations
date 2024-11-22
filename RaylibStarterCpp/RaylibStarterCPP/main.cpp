@@ -33,13 +33,15 @@ int main(int argc, char* argv[])
     int screenWidth = 414;//800;
     int screenHeight = 736;//450;
 
-    InitWindow(screenWidth, screenHeight, "AMOGUS");
+    InitWindow(screenWidth, screenHeight, "Optimisation");
 
     //SetTargetFPS(60);
     //--------------------------------------------------------------------------------------
 
     srand(time(NULL));
 
+
+    AssetManager assetManager = AssetManager();
 
 	std::vector<Critter*> critters;
     
@@ -50,17 +52,18 @@ int main(int argc, char* argv[])
 
     for (int i = 0; i < CRITTER_COUNT; i++)
     {
-        critters.push_back(new Critter);
+        Critter* c = new Critter();
         // create a random direction vector for the velocity
         Vector2 velocity = { -100.0f + (rand() % 200), -100.0f + (rand() % 200) };
         // normalize and scale by a random speed
         velocity = Vector2Scale(Vector2Normalize(velocity), MAX_VELOCITY);
 
         // create a critter in a random location
-        critters[i]->Init(
+        c->Init(
             { (float)(5+rand() % (screenWidth-10)), (float)(5+(rand() % screenHeight-10)) },
             velocity,
             12, "res/10.png");//critters that will be 'hunted' by destroyer
+        critters.push_back(c);
     }
     
 
@@ -105,6 +108,7 @@ int main(int argc, char* argv[])
 
         // update the critters
         // (dirty flags will be cleared during update)
+        // you can pause iteration prior at the inactive index
         for (int i = 0; i < CRITTER_COUNT; i++)
         {
             if(!critters[i]->IsDead())
@@ -189,6 +193,7 @@ int main(int argc, char* argv[])
                     pos = Vector2Add(pos, Vector2Scale(normal, -50));
                     // its pretty inefficient to keep reloading textures. ...if only there was something else we could do
                     //respawn critter
+                    //here we can go ahead and add parameters to Activate() for this stuff to save from needing it to be such an ugly function
                     critterPool.Activate()->Init(pos, Vector2Scale(normal, -MAX_VELOCITY), 12, "res/10.png");
                     break;
                 }
@@ -220,11 +225,6 @@ int main(int argc, char* argv[])
 
     // De-Initialization
     //--------------------------------------------------------------------------------------   
-    for (int i = 0; i < CRITTER_COUNT; i++)
-    {
-        critters[i]->Destroy();
-        delete critters[i];
-    }
     
 
     CloseWindow();        // Close window and OpenGL context

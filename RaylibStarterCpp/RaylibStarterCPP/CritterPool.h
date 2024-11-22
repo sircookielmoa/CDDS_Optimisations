@@ -6,14 +6,16 @@ class CritterPool
 public:
 	
 	//CrittaPool();
-	CritterPool(const std::vector<Critter*> _objects);
+	CritterPool(const std::vector<Critter*>& _objects);
+	~CritterPool();
+
 
 	Critter* Activate();
 	void Deactivate(Critter*);
 
-	std::vector<Critter*> crittersInPool;
 
 private:
+	std::vector<Critter*> crittersInPool;
 	unsigned int inactiveIndex;
 	//int poolSize;
 };

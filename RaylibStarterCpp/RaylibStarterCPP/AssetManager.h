@@ -9,6 +9,10 @@
 template<typename k, typename v>
 struct Pair
 {
+	Pair() {};
+
+	~Pair() {};
+
 	k first;
 	v second;
 };
@@ -22,9 +26,11 @@ public:
 	UnorderedMap()
 	{
 		size = 0;
-		mapContent = new pair[0];
+		mapContent = nullptr;
 	}
-	~UnorderedMap() {};
+	~UnorderedMap() {
+		delete[] mapContent;
+	};
 
 	content& operator[](key k)
 	{
@@ -54,8 +60,8 @@ public:
 			nMap[i] = mapContent[i];
 		}
 
-		nMap[size].first = k;
-		nMap[size].second = c;
+		nMap[newSize-1].first = k;
+		nMap[newSize-1].second = c;
 		delete[] mapContent;
 
 		mapContent = nMap;
@@ -121,6 +127,12 @@ static UnorderedMap<std::string, Texture2D*> loadedTextures;
 		delete texture;
 	};
 
+	~AssetManager() {
+		for (auto texture : loadedTextures) {
+			UnloadTexture(*texture.second);
+			delete texture.second;
+		}
+	}
 	
 
 };

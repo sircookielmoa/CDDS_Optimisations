@@ -13,7 +13,7 @@ Critter::Critter()
 Critter::~Critter()
 {
 	//UnloadTexture(m_texture);
-	m_isLoaded = false;
+	//m_isLoaded = false;
 }
 
 void Critter::Init(Vector2 position, Vector2 velocity, float radius, const char* texture)
